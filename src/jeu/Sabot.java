@@ -1,5 +1,6 @@
 package jeu;
 
+import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
@@ -29,6 +30,17 @@ public class Sabot implements Iterable<Carte>{
 		nbOperations++;
 	}
 	
+	public Carte piocher() {
+		Iterator<Carte> it = iterator();
+		if(it.hasNext()) {
+			Carte carte = it.next();
+			it.remove();
+			return carte;
+		}else {
+			return null;
+		}
+	}
+	
 	@Override
 	public Iterator<Carte> iterator(){
 		return new Iterateur();
@@ -46,6 +58,7 @@ public class Sabot implements Iterable<Carte>{
 		
 		@Override
 		public Carte next() {
+			verificationConcurrence();
 			if(hasNext()) {
 				Carte carte = pioche[indiceIterateur];
 				indiceIterateur++;
@@ -53,6 +66,28 @@ public class Sabot implements Iterable<Carte>{
 				return carte;
 			}else {
 				throw new NoSuchElementException();
+			}
+		}
+		
+		@Override
+		public void remove() {
+			verificationConcurrence();
+			if(estVide() || !nextEffectue) {
+				throw new IllegalStateException();
+			}
+			for (int i = indiceIterateur-1; i < nbCartes-1; i++) {
+				pioche[i] = pioche[i+1];
+			}
+			nextEffectue = false;
+			indiceIterateur--;
+			nbCartes--;
+			nbOperations++;
+			nbOperationsReference++;
+		}
+		
+		private void verificationConcurrence() {
+			if(nbOperations!=nbOperationsReference) {
+				throw new ConcurrentModificationException();
 			}
 		}
 	}
