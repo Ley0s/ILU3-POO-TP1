@@ -18,10 +18,10 @@ public class Jeu {
 		List<Carte> listeCartes = new ArrayList<>();
 		Collections.addAll(listeCartes, cartes);
 		
-		GestionCartes.melanger(listeCartes);
+		listeCartes = GestionCartes.melanger(listeCartes);
 		
-		Carte[] tabCartes = (Carte[]) listeCartes.toArray();
-		Sabot sabotcree = new Sabot(tabCartes);
-		this.sabot = sabotcree;
+		cartes = (Carte[]) listeCartes.toArray();
+		Sabot sabot = new Sabot(cartes);
+		this.sabot = sabot;
 	}
 }

@@ -6,9 +6,6 @@ public abstract class Carte {
 	public boolean equals(Object obj) {
 		if(obj == null)
 			return false;
-		if(getClass() == obj.getClass()) {
-			return toString().equals(((Carte)obj).toString());
-		}
-		return false;
+		return getClass().equals(obj.getClass());
 	}
 }

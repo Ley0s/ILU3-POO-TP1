@@ -9,8 +9,7 @@ import cartes.JeuDeCartes;
 import utils.GestionCartes;
 
 public class TestGestionCartes {
-
-	public static void main(String[] args) {
+	public static void main(String args[]) {
 		JeuDeCartes jeu = new JeuDeCartes();
 		List<Carte> listeCarteNonMelangee = new LinkedList<>();
 		for (Carte carte : jeu.donnerCartes()) {
@@ -21,10 +20,10 @@ public class TestGestionCartes {
 		listeCartes = GestionCartes.melanger(listeCartes);
 		System.out.println(listeCartes);
 		System.out.println(
-				"liste mÃ©langÃ©e sans erreur ? " + GestionCartes.verifierMelange(listeCarteNonMelangee, listeCartes));
-		listeCartes = GestionCartes.rassembler(listeCartes); //GestionCartes.rassemblerV2(listeCartes);
+				"liste mélangée sans erreur ? " + GestionCartes.verifierMelange(listeCarteNonMelangee, listeCartes));
+		listeCartes = GestionCartes.rassembler(listeCartes);
 		System.out.println(listeCartes);
-		System.out.println("liste rassemblÃ©e sans erreur ? " + GestionCartes.verifierRassemblement(listeCartes));
+		System.out.println("liste rassemblée sans erreur ? " + GestionCartes.verifierRassemblement(listeCartes));
 
 	}
 

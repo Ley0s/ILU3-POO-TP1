@@ -23,7 +23,8 @@ public class GestionCartes {
 
 	public static <T> List<T> melanger(List<T> liste) {
 		List<T> nouv = new ArrayList<>();
-		for (int i = 0; i < liste.size(); i++) {
+		int taille = liste.size();
+		for (int i = 0; i < taille; i++) {
 			nouv.add(extraire(liste));
 		}
 		return nouv;
