@@ -36,6 +36,19 @@ public class JeuDeCartes {
 		}
 		return cartes;
 	}
+	
+	public boolean checkCount() {
+		Carte[] cartes = donnerCartes();
+		int c = 0;
+		for (int i = 0; i < typesDeCartes.length; i++) {
+			for (int j = 0; j < typesDeCartes[i].getNbExemplaire(); j++) {
+				if(!(cartes[c] == typesDeCartes[i].getCarte()))
+					return false;
+				c++;
+			}
+		}
+		return true;
+	}
 
 	private static class Configuration {
 		private int nbExemplaire;
