@@ -5,7 +5,7 @@ import java.util.Iterator;
 
 import cartes.Carte;
 
-public class MainJoueur {
+public class MainJoueur implements Iterable<Carte>{
 	private ArrayList<Carte> main = new ArrayList<Carte>();
 	
 	public void prendre(Carte carte) {
@@ -26,5 +26,10 @@ public class MainJoueur {
 			retour.append("\n");
 		}
 		return retour.toString();
+	}
+	
+	@Override
+	public Iterator<Carte> iterator() {
+		return main.iterator();
 	}
 }
