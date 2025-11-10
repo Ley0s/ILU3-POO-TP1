@@ -1,9 +1,12 @@
 package jeu;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
+import cartes.Botte;
 import cartes.Carte;
+import utils.GestionCartes;
 
 public class Joueur {
 	private String nom;
@@ -52,7 +55,54 @@ public class Joueur {
 		return coups;
 	}
 	
+	public void retirerDeLaMain(Carte carte) {
+		main.jouer(carte);
+	}
 	
+	public void deposer(Carte carte) {
+		zoneDeJeu.deposer(carte);
+	}
+	
+	public Coup choisirCoup(Set<Joueur> participants) {
+		ArrayList<Coup> coups = new ArrayList<>(coupsPossibles(participants));
+		if(coups.isEmpty())
+			coups.addAll(coupsDefausse());
+		return GestionCartes.extraire(coups);
+	}
+	
+	public String afficherMain() {
+		return main.toString();
+	}
+	
+	public int donnerKmParcourus() {
+		return zoneDeJeu.donnerKmParcourus();
+	}
+	
+	public String afficherEtatJoueur() {
+		StringBuilder retour = new StringBuilder();
+		
+		retour.append("Bottes :\n");
+		for (Botte botte : zoneDeJeu.getBottes()) {
+			retour.append(" - " + botte.toString());
+		}
+		
+		retour.append("\nLimitation de vitesse ? : ");
+		if(zoneDeJeu.donnerLimitationVitesse() == 200)
+			retour.append("non\n");
+		else
+			retour.append("oui\n");
+		
+		retour.append("\nSommet pile bataille : ");
+		if(zoneDeJeu.getBatailles().isEmpty())
+			retour.append("null\n");
+		else
+			retour.append(zoneDeJeu.getBatailles().get(0).toString() + "\n");
+		
+		retour.append("\nMain :\n");
+		retour.append(main.toString());
+		
+		return retour.toString();
+	}
 
 	@Override
 	public String toString() {

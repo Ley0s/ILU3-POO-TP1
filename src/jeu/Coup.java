@@ -16,7 +16,7 @@ public class Coup {
 	}
 	
 	public boolean estValide() {
-		if(jCible.equals(null))
+		if(jCible == null)
 			return true;
 		if((carteJoue instanceof Limite) || (carteJoue instanceof Attaque))
 			return !jCible.equals(jCourant) && jCible.estDepotAutorise(carteJoue);
@@ -34,5 +34,12 @@ public class Coup {
 		return jCible;
 	}
 	
-	
+	@Override
+	public String toString() {
+		if(jCible == null)
+			return "defausse la carte " + carteJoue.toString();
+		else
+			return "depose la carte " + carteJoue.toString() 
+				+ " dans la zone de jeu de " + jCible.toString();
+	}
 }

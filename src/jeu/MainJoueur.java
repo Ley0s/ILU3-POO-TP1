@@ -20,6 +20,7 @@ public class MainJoueur implements Iterable<Carte>{
 	@Override
 	public String toString() {
 		StringBuilder retour = new StringBuilder();
+		retour.append(" a dans sa main :\n");
 		for (Iterator<Carte> iterator = main.iterator(); iterator.hasNext();) {
 			Carte carte = iterator.next();
 			retour.append(carte);

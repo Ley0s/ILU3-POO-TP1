@@ -120,7 +120,7 @@ public class ZoneDeJeu {
 		if(limite instanceof DebutLimite)
 			return (limites.isEmpty() || (limites.get(0) instanceof FinLimite));
 		else
-			return (limites.get(0) instanceof DebutLimite);
+			return (!limites.isEmpty() && limites.get(0) instanceof DebutLimite);
 	}
 	
 	private boolean estDepotBatailleAutorise(Bataille bataille) {
@@ -160,5 +160,21 @@ public class ZoneDeJeu {
 				return true;
 		}
 		return false;
+	}
+
+	public List<Limite> getLimites() {
+		return limites;
+	}
+
+	public List<Bataille> getBatailles() {
+		return batailles;
+	}
+
+	public List<Borne> getBornes() {
+		return bornes;
+	}
+
+	public Set<Botte> getBottes() {
+		return bottes;
 	}
 }
